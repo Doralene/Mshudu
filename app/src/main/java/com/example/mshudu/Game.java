@@ -9,11 +9,16 @@ public class Game {
     //用来存储每个单元格不可使用的数字
     private int used[][][] = new int[9][9][];
     boolean finished=false;
+    private String initdata;
+    private String gamedata;
+    private String lastTime;
+    private String finishTime;
 
     public Game() {
         getBaseSudoku();
         sudoku = initSudoku(sudoku, 15);
         calculateAllUsedNums();
+
     }
 
     /**
@@ -102,6 +107,7 @@ public class Game {
             }
         }
         digHoles(20, false);
+        setInitdata();
         return numsArray;
     }
 
@@ -197,6 +203,7 @@ public class Game {
                 used[x][y] = calculateUsedNums(x, y);
             }
         }
+//        setGamedata(sudoku);
     }
 
     /**
@@ -317,5 +324,54 @@ public class Game {
             }
         finished=true;
         return finished;
+    }
+
+    public String getInitdata() {
+        return initdata;
+    }
+
+    public void setInitdata() {
+        initdata="";
+        for(int i=0;i<9;i++)
+            for(int j=0;j<9;j++)
+            {
+               initdata+=sudoku[j][i]+",";
+//                gamedata+=now[j][i]+",";
+            }
+        initdata=initdata.substring(0,initdata.length()-1);//把最后的逗号去掉
+        System.out.println("inittttttttttttt"+initdata);
+    }
+
+    public String getGamedata() {
+        gamedata="";
+        for(int i=0;i<9;i++)
+            for(int j=0;j<9;j++)
+            {
+                gamedata+=sudoku[j][i]+",";
+//                gamedata+=now[j][i]+",";
+            }
+        gamedata=gamedata.substring(0,gamedata.length()-1);//把最后的逗号去掉
+        return gamedata;
+    }
+
+    public void setGamedata(int data[][]){
+        sudoku=data;
+    }
+
+
+    public String getLastTime() {
+        return lastTime;
+    }
+
+    public void setLastTime(String lastTime) {
+        this.lastTime = lastTime;
+    }
+
+    public String getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(String finishTime) {
+        this.finishTime = finishTime;
     }
 }

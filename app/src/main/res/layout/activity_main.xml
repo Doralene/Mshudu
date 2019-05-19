@@ -47,6 +47,16 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="拍照识题"
+                    android:id="@+id/camera"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="自动求解"
+                    android:id="@+id/answer"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="返回"
                     android:id="@+id/back"/>
 
@@ -69,6 +79,10 @@
                     android:textSize="25dp" />
 
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/img"/>
             </LinearLayout>
 
         </LinearLayout>

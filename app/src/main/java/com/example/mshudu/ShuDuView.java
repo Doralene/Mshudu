@@ -213,4 +213,19 @@ public class ShuDuView extends View {
     public boolean finishGame(){
         return game.isFinishedGame();
     }
+    public String getInit(){
+        return game.getInitdata();
+    }
+    public String getNow(){
+        return game.getGamedata();
+    }
+
+    public int[][] getAllSuduNumber(){
+        return game.getAllNumber();
+    }
+
+    public  void setData(int data[][]){
+        game.setGamedata(data);
+        invalidate();//刷新界面，重新调用onDraw方法
+    }
 }

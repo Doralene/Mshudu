@@ -56,16 +56,16 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 //                startActivity(new Intent(this));
                 break;
             case R.id.rank_list:
-
+                startActivity(new Intent(this,RankList.class));
                 break;
             case R.id.history:
-
+                startActivity(new Intent(this,History.class));
                 break;
             case R.id.about:
                 startActivity(new Intent(this,About.class));
                 break;
             case R.id.quit:
-
+                finish();
                 break;
         }
     }
