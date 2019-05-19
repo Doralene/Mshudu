@@ -8,6 +8,7 @@ public class Game {
     private boolean[][] isNewNumber = new boolean[9][9];
     //用来存储每个单元格不可使用的数字
     private int used[][][] = new int[9][9][];
+    boolean finished=false;
 
     public Game() {
         getBaseSudoku();
@@ -305,5 +306,16 @@ public class Game {
     }
     public int[][] getAllNumber(){
         return sudoku;
+    }
+
+    public boolean isFinishedGame(){
+        for (int i=0;i<9;i++)
+            for(int j=0;j<9;j++){
+                if (sudoku[i][j]==0)
+
+                    return false;
+            }
+        finished=true;
+        return finished;
     }
 }

@@ -103,13 +103,6 @@ public class ShuDuView extends View {
         hilitePaint.setColor(getResources().getColor(R.color.hiliteGray));
         lightPaint.setStrokeWidth(2);
         lightPaint.setColor(getResources().getColor(R.color.lightGray));
-        btnPaint.setStrokeWidth(2);
-        btnPaint.setColor(getResources().getColor(R.color.colorAccent));
-//        btnPaint.setStyle(Paint.Style.FILL);//设置空心
-//        canvas.drawRect(btnStartX, btnStartY, btnStartX + btnWidth, btnStartY + btnHeight, btnPaint);
-//        canvas.drawRect(btnStartX, btnStartY + btnHeight * 3 / 2, btnStartX + btnWidth, btnStartY + btnHeight * 5 / 2, btnPaint);
-//        canvas.drawRect(btnStartX,btnStartY + btnHeight * 6 / 2,btnStartX + btnWidth,btnStartY + btnHeight * 8 / 2,btnPaint);
-//        canvas.drawRect(btnStartX,btnStartY + btnHeight * 9 / 2,btnStartX + btnWidth,btnStartY + btnHeight * 11 / 2,btnPaint);
         setBackGround(canvas);
         refreshNumbers(canvas);
 
@@ -148,11 +141,6 @@ public class ShuDuView extends View {
             for (int j=0; j<9; j++)
                 canvas.drawText(game.getNumStr(i, j), i * width + x, j * width + y, game.isAbleToEdit(i, j)? newNumPaint: numPaint);
         }
-//
-//        canvas.drawText("撤销", btnStartX + btnWidth/2, btnStartY + btnHeight/2 - (fm.ascent + fm.descent)/2, numPaint);
-//        canvas.drawText("暂停", btnStartX + btnWidth/2, btnStartY + btnHeight*2 - (fm.ascent + fm.descent)/2, numPaint);
-//        canvas.drawText("新游戏",btnStartX+btnWidth/2,btnStartY + btnHeight*7/2 - (fm.ascent + fm.descent)/2, numPaint);
-//        canvas.drawText("退出",btnStartX+btnWidth/2,btnStartY + btnHeight*5 - (fm.ascent + fm.descent)/2, numPaint);
     }
 
     @Override
@@ -161,52 +149,30 @@ public class ShuDuView extends View {
         if (event.getAction() != MotionEvent.ACTION_DOWN) {
             return super.onTouchEvent(event);
         }
-//        if (event.getX()>width*9 || event.getY()>width*9) {
-//            if (event.getX()>btnStartX && event.getX()<btnStartX + btnWidth) {
-//                if (event.getY() > btnStartY && event.getY() < btnStartY + btnHeight) {//撤销
-////                    Log.d("cancl","eeeeeeeeeeeeeeeeeeeeeeee");
-//
-//                    return super.onTouchEvent(event);
-//                }
-//                if (event.getY() > btnStartY + btnHeight*3/2 && event.getY() < btnStartY + btnHeight*5/2) {//暂停
-//
-//
-//                }
-//                if (event.getY() > btnStartY + btnHeight*6/2 && event.getY() < btnStartY + btnHeight*8/2) {//新游戏
-//                    new_game();
-//                    return true;
-//
-//                } if (event.getY() > btnStartY + btnHeight*9/2 && event.getY() < btnStartY + btnHeight*11/2) {//退出
-//
-//                    return true;
-//
-//                }
-//            }
-//            return super.onTouchEvent(event);
-//        }
+        //在网格区
+        if(event.getY()<=width*9){
+            numberX = (int)(event.getX()/width);
+            numberY = (int)(event.getY()/width);
+            if (!game.isAbleToEdit(numberX, numberY)) {
+                return super.onTouchEvent(event);
+            }
+            int used[] = game.getUsedNumbers(numberX, numberY);
+            for (int i=0; i<used.length; i++) {
+                Log.i("Game", String.valueOf(used[i]));
+            }
 
-        numberX = (int)(event.getX()/width);
-        numberY = (int)(event.getY()/width);
-        if (!game.isAbleToEdit(numberX, numberY)) {
-            return super.onTouchEvent(event);
+            KeysDialog keysDialog = new KeysDialog(getContext(), used, this, R.style.dialog, (int)(width*3), (int)(width*3));
+
+            Window dialogWindow = keysDialog.getWindow();
+            WindowManager.LayoutParams layoutParams = dialogWindow.getAttributes();//获取对话框当前的参数值
+            dialogWindow.setGravity(Gravity.LEFT | Gravity.TOP);//设置原始坐标为左上角
+            //设置对话框相对于原始坐标的位置
+            layoutParams.x = (int)((numberX - 1) * width);
+            layoutParams.y = (int)((numberY - 1) * width);
+
+            keysDialog.show();
         }
-        int used[] = game.getUsedNumbers(numberX, numberY);
-        for (int i=0; i<used.length; i++) {
-            Log.i("Game", String.valueOf(used[i]));
-        }
-
-        KeysDialog keysDialog = new KeysDialog(getContext(), used, this, R.style.dialog, (int)(width*3), (int)(width*3));
-
-        Window dialogWindow = keysDialog.getWindow();
-        WindowManager.LayoutParams layoutParams = dialogWindow.getAttributes();//获取对话框当前的参数值
-        dialogWindow.setGravity(Gravity.LEFT | Gravity.TOP);//设置原始坐标为左上角
-        //设置对话框相对于原始坐标的位置
-        layoutParams.x = (int)((numberX - 1) * width);
-        layoutParams.y = (int)((numberY - 1) * width);
-
-        keysDialog.show();
-
-        return true;
+            return true;
     }
 
     public void new_game(){
@@ -243,5 +209,8 @@ public class ShuDuView extends View {
         s=s.substring(0,s.length()-1);//把最后的逗号去掉
         System.out.println(s);
         Log.d("tuichu","11111111111111");
+    }
+    public boolean finishGame(){
+        return game.isFinishedGame();
     }
 }

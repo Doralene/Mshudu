@@ -2,10 +2,10 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#36918A8A</color>
-    <color name="transparent">#EEEEEE</color>
+    <color name="colorAccent">#A30A0909</color>
+    <color name="transparent">#757070</color>
     <color name="backGround">#FFFFFF</color>
     <color name="darkGray">#D0222222</color>
-    <color name="hiliteGray">#30FFFFFF</color>
+    <color name="hiliteGray">#CE817E7E</color>
     <color name="lightGray">#E62E2E2E</color>
 </resources>

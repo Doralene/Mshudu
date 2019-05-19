@@ -47,8 +47,8 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="退出"
-                    android:id="@+id/quit"/>
+                    android:text="返回"
+                    android:id="@+id/back"/>
 
             </LinearLayout>
             <LinearLayout

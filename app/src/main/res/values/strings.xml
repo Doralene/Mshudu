@@ -1,3 +1,26 @@
 <resources>
+    <string name="hello">数独sudoku</string>
     <string name="app_name">Mshudu</string>
+    <string name="btn1">继续</string>
+    <string name="about_text">\t \t \t \t 数独是一个传统的数字游戏，由81个单元格组成，玩家要试着在这些单元格中填入1-9的数字，使数字在每一行、每列和每区中都只出现一次。\n
+        \t \t \t \t 游戏开始时，部分单元格中已经填入一些已知的数字，玩家只需要在剩下的空单元格中填入数字。\n
+        \t \t \t \t 一道正确的数独谜题只有一个答案。
+        </string>
+    <string name="about_title">关于数独游戏</string>
+    <string name="setting_label">设置</string>
+    <string name="setting_title">游戏设置</string>
+    <string name="settings_shortcut">s</string>
+    <string name="music_title">音乐</string>
+    <string name="music_summary">播放背景音乐</string>
+    <string name="hints_title">提示</string>
+    <string name="hints_summary">是否显示提示</string>
+    <!--开始游戏-->
+    <string name="new_game_title">难度</string>
+    <string name="easy_label">简单</string>
+    <string name="medium_label">一般</string>
+    <string name="hard_label">困难</string>
+    <string name="game_title">数独游戏</string>
+    <string name="no_moves_label">不能填充任何数字</string>
+    <string name="keypad_title">键盘</string>
+    <string name="title_activity_game">GameActivity</string>
 </resources>
